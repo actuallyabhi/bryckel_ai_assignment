@@ -21,6 +21,7 @@ const NoteView = ({ notes, setNotes }) => {
   const handleContentChange = (e) => {
     setContent(e.target.value);
   };
+
   const getNoteById = async (id) => {
     try {
       const response = await axios.get(`${BASE_DOMAIN}/notes/${id}/`);
@@ -72,6 +73,7 @@ const NoteView = ({ notes, setNotes }) => {
         toast.success('Note updated successfully', {
           toastId: 'note-updated'
         });
+        setNote(updatedNote)
         const updatedNotes = [...notes];
         updatedNotes[updatedNotes.findIndex((n) => n.id === updatedNote.id)] = updatedNote;
         setNotes(updatedNotes);
